@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV Fornalik | Serwis Pojazdów Elektrycznych i Hybrydowych</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<style>
+/* ===== RESET & VARIABLES ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-deep:#05050d;
+  --bg-card:#0e0e1c;
+  --bg-card2:#141428;
+  --green:#00ff88;
+  --green-dim:#00cc6a;
+  --cyan:#00d4ff;
+  --cyan-dim:#0099bb;
+  --purple:#7c3aed;
+  --orange:#ff6b00;
+  --red:#ff3355;
+  --text:#d8dde8;
+  --text-dim:#8a93a8;
+  --border:#1e2035;
+  --border-bright:#2a2d50;
+  --font:'Inter',system-ui,sans-serif;
+  --glow-green:0 0 20px rgba(0,255,136,.35);
+  --glow-cyan:0 0 20px rgba(0,212,255,.35);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg-deep);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden}
+a{color:var(--cyan);text-decoration:none}
+button{cursor:pointer;border:none;font-family:var(--font)}
+
+/* ===== LUCIDE ICONS ===== */
+svg.lucide{display:inline-block;vertical-align:middle;flex-shrink:0}
+
+/* ===== TYPOGRAPHY ===== */
+h1{font-size:clamp(2rem,6vw,4rem);font-weight:800;line-height:1.1}
+h2{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:700}
+h3{font-size:1.3rem;font-weight:600}
+.section-label{text-transform:uppercase;letter-spacing:.15em;font-size:.78rem;color:var(--green);font-weight:600;margin-bottom:.5rem}
+.section-title{margin-bottom:1rem}
+.section-sub{color:var(--text-dim);max-width:640px;margin-bottom:2.5rem;font-size:.97rem}
+
+/* ===== LAYOUT ===== */
+section{padding:5rem 1.5rem}
+.container{max-width:1200px;margin:0 auto}
+
+/* ===== CARD ===== */
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:border-color .3s,box-shadow .3s}
+
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.75rem 1.5rem;border-radius:10px;font-weight:600;font-size:.9rem;transition:all .25s;white-space:nowrap;flex-shrink:0}
+.btn-green{background:var(--green);color:#000}
+.btn-green:hover{background:#33ffaa;box-shadow:var(--glow-green);transform:translateY(-2px)}
+.btn-outline{background:transparent;border:1px solid var(--border-bright);color:var(--text)}
+.btn-outline:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:var(--glow-cyan)}
+.btn-cyan{background:var(--cyan);color:#000}
+.btn-cyan:hover{background:#33ddff;box-shadow:var(--glow-cyan);transform:translateY(-2px)}
+.btn-sm{padding:.55rem 1.1rem;font-size:.82rem}
+
+/* ===== NAVIGATION ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:.75rem 1.5rem;background:rgba(5,5,13,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo{display:flex;align-items:center;gap:.7rem;font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
+.logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--green),var(--cyan));border-radius:8px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:18px;height:18px;color:#000;stroke-width:2.5}
+.nav-logo span.accent{color:var(--green)}
+.nav-links{display:flex;gap:1.25rem;list-style:none}
+.nav-links a{color:var(--text-dim);font-size:.85rem;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--cyan)}
+.nav-cta{display:flex;gap:.6rem;align-items:center;flex-shrink:0}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;padding:.3rem}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;padding-top:5rem;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,255,136,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.04) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 20s linear infinite}
+@keyframes gridMove{0%{background-position:0 0}100%{background-position:60px 60px}}
+.hero-orbs{position:absolute;inset:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:orbFloat 8s ease-in-out infinite}
+.orb-1{width:600px;height:600px;background:var(--green);top:-200px;left:-200px}
+.orb-2{width:500px;height:500px;background:var(--cyan);bottom:-200px;right:-100px;animation-delay:3s}
+.orb-3{width:300px;height:300px;background:var(--purple);top:30%;left:50%;animation-delay:6s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-30px)}}
+.hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:0 1.5rem}
+.hero-eyebrow{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
+.hero-eyebrow-line{width:36px;height:2px;background:var(--green);flex-shrink:0}
+.hero-eyebrow span{color:var(--green);text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;font-weight:600}
+.hero-title{margin-bottom:1.1rem}
+.hero-title .highlight{background:linear-gradient(90deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{color:var(--text-dim);font-size:1rem;margin-bottom:1.75rem;max-width:500px;line-height:1.7}
+.hero-stats{display:flex;gap:2rem;margin-bottom:2rem}
+.stat-num{font-size:1.9rem;font-weight:800;background:linear-gradient(90deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:.78rem;color:var(--text-dim)}
+.hero-btns{display:flex;gap:.85rem;flex-wrap:wrap}
+.hero-visual{position:relative}
+.ev-diagram{background:var(--bg-card);border:1px solid var(--border-bright);border-radius:20px;padding:2rem;overflow:hidden;position:relative}
+.ev-diagram::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,136,.05),rgba(0,212,255,.05));pointer-events:none}
+.ev-diag-label{font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.25rem;font-weight:500}
+.ev-gauge-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
+.pulse-ring{width:170px;height:170px;border-radius:50%;border:2px solid var(--green);display:flex;align-items:center;justify-content:center;position:relative;animation:pulse 2s ease-in-out infinite}
+.pulse-ring::before,.pulse-ring::after{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid var(--green);opacity:0;animation:pulseWave 2s ease-out infinite}
+.pulse-ring::after{animation-delay:.7s}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,.4)}50%{box-shadow:0 0 20px 10px rgba(0,255,136,.1)}}
+@keyframes pulseWave{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.6);opacity:0}}
+.pulse-inner{text-align:center}
+.pulse-val{font-size:2.4rem;font-weight:800;color:var(--green);line-height:1}
+.pulse-unit{font-size:.78rem;color:var(--text-dim);margin-top:.2rem}
+.ev-metrics{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:.75rem;width:100%}
+.metric{background:rgba(255,255,255,.04);border-radius:10px;padding:.65rem;text-align:center;border:1px solid var(--border)}
+.metric-val{font-size:1.1rem;font-weight:700;color:var(--cyan)}
+.metric-key{font-size:.72rem;color:var(--text-dim);margin-top:.1rem}
+
+/* ===== TRUST BAR ===== */
+.trust-bar{background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.1rem 1.5rem}
+.trust-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-around;gap:1.25rem}
+.trust-item{display:flex;align-items:center;gap:.55rem;font-size:.85rem;color:var(--text-dim)}
+.trust-item svg{width:16px;height:16px;color:var(--green);flex-shrink:0}
+.trust-item strong{color:var(--text)}
+
+/* ===== SERVICE ICON ===== */
+.service-icon-wrap{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,rgba(0,255,136,.08),rgba(0,212,255,.08));display:flex;align-items:center;justify-content:center;margin-bottom:1rem;border:1px solid var(--border-bright)}
+.service-icon-wrap svg{width:22px;height:22px;color:var(--green)}
+
+/* ===== SERVICES ===== */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:1.1rem}
+.service-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:all .3s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--cyan));transform:scaleX(0);transition:transform .3s}
+.service-card:hover{transform:translateY(-4px);border-color:var(--border-bright);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card:hover .service-icon-wrap{background:linear-gradient(135deg,rgba(0,255,136,.14),rgba(0,212,255,.14))}
+.service-name{font-weight:600;margin-bottom:.35rem;font-size:.95rem}
+.service-desc{font-size:.82rem;color:var(--text-dim);line-height:1.55}
+
+/* ===== DIAGNOSTICIAN ===== */
+.diag-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.symptom-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.symptom-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:11px;padding:.85rem;text-align:left;color:var(--text);transition:all .25s;display:flex;align-items:center;gap:.65rem}
+.symptom-btn:hover,.symptom-btn.active{border-color:var(--cyan);background:rgba(0,212,255,.07);color:var(--cyan)}
+.symptom-btn .s-icon svg{width:18px;height:18px;color:var(--cyan)}
+.symptom-btn.active .s-icon svg{color:var(--cyan)}
+.symptom-btn:not(.active) .s-icon svg{color:var(--text-dim)}
+.symptom-btn .s-text{font-size:.82rem;font-weight:500;line-height:1.3}
+.diag-result{background:var(--bg-card2);border:1px solid var(--border-bright);border-radius:16px;padding:2rem;min-height:340px;display:flex;flex-direction:column;justify-content:center}
+.diag-empty{text-align:center;color:var(--text-dim)}
+.diag-empty-icon{width:48px;height:48px;color:var(--text-dim);opacity:.3;margin:0 auto 1rem}
+.diag-detail{display:none}
+.diag-detail.visible{display:block}
+.diag-severity{display:inline-flex;align-items:center;gap:.4rem;padding:.3em .8em;border-radius:999px;font-size:.78rem;font-weight:600;margin-bottom:.9rem}
+.sev-ok{background:rgba(0,255,136,.12);color:var(--green);border:1px solid rgba(0,255,136,.25)}
+.sev-warn{background:rgba(255,107,0,.12);color:var(--orange);border:1px solid rgba(255,107,0,.25)}
+.sev-crit{background:rgba(255,51,85,.12);color:var(--red);border:1px solid rgba(255,51,85,.25)}
+.diag-title{font-size:1.15rem;font-weight:700;margin-bottom:.65rem;color:var(--cyan)}
+.diag-desc{color:var(--text-dim);font-size:.88rem;margin-bottom:1.1rem;line-height:1.7}
+.diag-actions{background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.12);border-radius:10px;padding:.9rem 1rem;margin-bottom:1.1rem}
+.diag-actions h4{color:var(--green);font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;font-weight:600}
+.diag-actions ul{list-style:none;color:var(--text-dim);font-size:.84rem;display:flex;flex-direction:column;gap:.3rem}
+.diag-actions ul li{display:flex;align-items:flex-start;gap:.4rem}
+.diag-actions ul li::before{content:'→';color:var(--green);flex-shrink:0}
+.diag-cost{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.diag-cost-label{font-size:.75rem;color:var(--text-dim)}
+.diag-cost-value{font-size:1.05rem;font-weight:700;color:var(--cyan)}
+
+/* ===== SOH CALCULATOR ===== */
+.soh-wrap{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
+.soh-form{display:flex;flex-direction:column;gap:1.1rem}
+.form-group label{display:block;font-size:.83rem;font-weight:500;color:var(--text-dim);margin-bottom:.4rem}
+.range-value{display:inline-block;background:rgba(0,255,136,.1);color:var(--green);border-radius:6px;padding:.15em .55em;font-size:.82rem;font-weight:600;border:1px solid rgba(0,255,136,.2);margin-left:.3rem}
+input[type=range]{-webkit-appearance:none;width:100%;height:5px;background:var(--border-bright);border-radius:3px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--green);cursor:pointer;box-shadow:0 0 8px rgba(0,255,136,.5)}
+.range-labels{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text-dim);margin-top:.2rem}
+select,.form-input{background:var(--bg-card2);border:1px solid var(--border-bright);color:var(--text);border-radius:10px;padding:.65rem .9rem;font-size:.88rem;font-family:var(--font);width:100%;outline:none;transition:border-color .2s}
+select:focus,.form-input:focus{border-color:var(--cyan)}
+select option{background:var(--bg-card2)}
+
+/* Formula Box (collapsible) */
+.formula-box{background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.13);border-radius:12px;padding:1rem 1.1rem;margin-top:.25rem}
+.formula-box summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;list-style:none;gap:.5rem}
+.formula-box summary::-webkit-details-marker{display:none}
+.formula-summary-main{font-size:.78rem;color:var(--cyan);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.formula-oneliner{font-family:'Courier New',monospace;font-size:.78rem;color:var(--text-dim);margin-top:.2rem}
+.formula-toggle-icon{color:var(--cyan);flex-shrink:0;transition:transform .2s}
+.formula-box[open] .formula-toggle-icon{transform:rotate(180deg)}
+.formula-detail{padding-top:.9rem;border-top:1px solid rgba(0,212,255,.1);margin-top:.9rem}
+.formula-code{font-family:'Courier New',monospace;color:var(--text-dim);line-height:1.85;background:rgba(0,0,0,.3);padding:.75rem 1rem;border-radius:8px;font-size:.78rem}
+
+/* SOH Result */
+.soh-result{text-align:center}
+.gauge-container{position:relative;width:200px;height:200px;margin:0 auto 1.25rem}
+.gauge-svg{width:100%;height:100%}
+.soh-gauge-val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.soh-num{font-size:2.8rem;font-weight:800;line-height:1}
+.soh-lbl{font-size:.78rem;color:var(--text-dim);margin-top:.2rem}
+.soh-status{font-size:.88rem;font-weight:600;padding:.35em 1em;border-radius:999px;margin-bottom:1.1rem;display:inline-block}
+.soh-tips{text-align:left;background:var(--bg-card2);border-radius:12px;padding:1.1rem}
+.soh-tips h4{color:var(--green);font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.65rem;font-weight:600}
+.soh-tips ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.soh-tips ul li{display:flex;align-items:flex-start;gap:.45rem;font-size:.83rem;color:var(--text-dim)}
+.soh-tips ul li::before{content:'✦';color:var(--cyan);flex-shrink:0;font-size:.65rem;margin-top:.35rem}
+
+/* ===== KNOWLEDGE HUB ===== */
+.know-tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2rem}
+.know-tab{background:var(--bg-card);border:1px solid var(--border);border-radius:999px;padding:.45em 1.1em;font-size:.82rem;color:var(--text-dim);transition:all .2s;font-family:var(--font);font-weight:500;cursor:pointer}
+.know-tab:hover{border-color:var(--border-bright);color:var(--text)}
+.know-tab.active{background:rgba(0,255,136,.1);border-color:rgba(0,255,136,.35);color:var(--green)}
+.know-panel{display:none;animation:fadeIn .3s ease}
+.know-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.know-panel-inner{display:grid;grid-template-columns:1fr 1.15fr;gap:2rem;align-items:start}
+.know-text h3{font-size:1.25rem;color:var(--cyan);margin-bottom:.9rem}
+.know-text p{color:var(--text-dim);margin-bottom:.9rem;line-height:1.75;font-size:.93rem}
+.know-text p strong{color:var(--text)}
+.know-highlight{background:rgba(0,255,136,.06);border-left:3px solid var(--green);border-radius:0 10px 10px 0;padding:.9rem 1.1rem;margin:1rem 0;font-size:.88rem;color:var(--text-dim)}
+.know-highlight strong{color:var(--green)}
+.know-visual{background:var(--bg-card2);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+.info-list{display:flex;flex-direction:column;gap:.65rem}
+.info-item{display:flex;align-items:flex-start;gap:.7rem;padding:.7rem;background:rgba(255,255,255,.03);border-radius:10px;border:1px solid var(--border)}
+.info-item-icon{width:36px;height:36px;border-radius:9px;background:rgba(0,255,136,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(0,255,136,.15)}
+.info-item-icon svg{width:16px;height:16px;color:var(--green)}
+.info-item .info-body strong{display:block;font-size:.85rem;margin-bottom:.15rem;color:var(--text)}
+.info-item .info-body span{font-size:.8rem;color:var(--text-dim);line-height:1.5}
+.comparison-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.comparison-table th{background:rgba(0,212,255,.08);color:var(--cyan);padding:.65rem .7rem;text-align:left;border-bottom:1px solid var(--border-bright);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+.comparison-table td{padding:.6rem .7rem;border-bottom:1px solid var(--border);color:var(--text-dim)}
+.comparison-table tr:hover td{background:rgba(255,255,255,.02)}
+.val-good{color:var(--green);font-weight:500}
+.val-warn{color:var(--orange);font-weight:500}
+.charge-types{display:flex;flex-direction:column;gap:.65rem}
+.charge-type{border-radius:10px;padding:.85rem 1rem;border:1px solid var(--border);background:rgba(255,255,255,.02)}
+.charge-type-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.35rem;gap:.5rem}
+.charge-type-name{font-weight:600;font-size:.85rem}
+.badge{display:inline-block;padding:.2em .65em;border-radius:999px;font-size:.72rem;font-weight:600;white-space:nowrap}
+.badge-green{background:rgba(0,255,136,.12);color:var(--green);border:1px solid rgba(0,255,136,.25)}
+.badge-cyan{background:rgba(0,212,255,.12);color:var(--cyan);border:1px solid rgba(0,212,255,.25)}
+.badge-orange{background:rgba(255,107,0,.12);color:var(--orange);border:1px solid rgba(255,107,0,.25)}
+.charge-bar-wrap{height:5px;background:var(--border-bright);border-radius:3px;margin:.4rem 0;overflow:hidden}
+.charge-bar{height:100%;border-radius:3px}
+.charge-bar-ac1{background:var(--green);width:8%}
+.charge-bar-ac2{background:var(--green);width:25%}
+.charge-bar-dc{background:var(--orange);width:55%}
+.charge-bar-hpc{background:var(--red);width:100%}
+
+/* ===== SERVICE CALCULATOR ===== */
+.calc-wrapper{display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;align-items:start}
+.service-items{display:flex;flex-direction:column;gap:.5rem}
+.service-item{display:flex;align-items:center;gap:.85rem;padding:.9rem 1.1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;transition:all .25s;cursor:pointer}
+.service-item:hover{border-color:var(--border-bright)}
+.service-item.selected{border-color:var(--green);background:rgba(0,255,136,.05)}
+.service-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--green);cursor:pointer;flex-shrink:0}
+.service-item-body{flex:1;min-width:0}
+.service-item-name{font-weight:500;font-size:.9rem;margin-bottom:.1rem}
+.service-item-desc{font-size:.77rem;color:var(--text-dim)}
+.service-item-price{font-weight:700;color:var(--cyan);white-space:nowrap;font-size:.9rem}
+.calc-summary{background:var(--bg-card2);border:1px solid var(--border-bright);border-radius:16px;padding:1.5rem;position:sticky;top:5.5rem}
+.calc-summary h3{margin-bottom:1.1rem;color:var(--cyan);font-size:1rem;display:flex;align-items:center;gap:.5rem}
+.calc-summary h3 svg{width:16px;height:16px}
+.summary-lines{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem;min-height:80px}
+.summary-line{display:flex;justify-content:space-between;font-size:.85rem;color:var(--text-dim);gap:.5rem}
+.summary-line span:last-child{white-space:nowrap}
+.summary-line.total-line{font-size:1rem;font-weight:700;color:var(--text);border-top:1px solid var(--border-bright);padding-top:.65rem;margin-top:.15rem}
+.summary-empty{color:var(--text-dim);font-size:.85rem;text-align:center;padding:.75rem 0}
+.discount-note{background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.18);border-radius:9px;padding:.65rem .9rem;font-size:.78rem;color:var(--text-dim);margin-bottom:1rem}
+.discount-note strong{color:var(--green)}
+
+/* ===== BOOKING FORM ===== */
+.booking-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:start}
+.booking-form{display:flex;flex-direction:column;gap:.9rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.form-group label{font-size:.82rem;font-weight:500;color:var(--text-dim);margin-bottom:.35rem;display:block}
+.form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,.04);border:1px solid var(--border-bright);color:var(--text);border-radius:10px;padding:.7rem .9rem;font-size:.88rem;font-family:var(--font);width:100%;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--cyan);background:rgba(0,212,255,.04)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-group select option{background:#0e0e1c}
+
+/* Multi-select service checkboxes */
+.service-checks-label{font-size:.82rem;font-weight:500;color:var(--text-dim);margin-bottom:.5rem;display:block}
+.service-checks-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.srv-check-item{display:flex;align-items:center;gap:.85rem;padding:.9rem 1.1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;transition:all .25s;cursor:pointer;font-size:.88rem;color:var(--text);line-height:1.3}
+.srv-check-item:hover{border-color:var(--border-bright)}
+.srv-check-item input[type=checkbox]{width:16px;height:16px;min-width:16px;accent-color:var(--green);cursor:pointer;flex-shrink:0}
+.srv-check-item.checked{border-color:var(--green);background:rgba(0,255,136,.05)}
+
+/* Package pre-fill note */
+.package-note{display:none;background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);border-radius:10px;padding:.75rem 1rem;font-size:.83rem;color:var(--cyan);margin-bottom:.5rem}
+.package-note strong{color:var(--cyan)}
+
+.booking-confirm{display:none;text-align:center;padding:2rem}
+.confirm-icon{font-size:3.5rem;margin-bottom:1rem}
+.confirm-num{font-size:1.5rem;font-weight:800;color:var(--green);letter-spacing:.1em;margin:.65rem 0;font-family:'Courier New',monospace}
+.booking-info{display:flex;flex-direction:column;gap:1rem}
+.binfo-card{background:var(--bg-card2);border:1px solid var(--border);border-radius:14px;padding:1.1rem;display:flex;align-items:flex-start;gap:.9rem}
+.binfo-icon{width:38px;height:38px;border-radius:10px;background:rgba(0,255,136,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(0,255,136,.15)}
+.binfo-icon svg{width:17px;height:17px;color:var(--green)}
+.binfo-body strong{display:block;color:var(--text);font-size:.9rem;margin-bottom:.2rem}
+.binfo-body span{font-size:.82rem;color:var(--text-dim);line-height:1.5}
+.binfo-body a{color:var(--cyan)}
+
+/* ===== FOOTER ===== */
+footer{background:var(--bg-card);border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;margin-bottom:3rem}
+.footer-brand .nav-logo{margin-bottom:.65rem}
+.footer-brand p{font-size:.82rem;color:var(--text-dim);line-height:1.7}
+.footer-heading{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);margin-bottom:.9rem;font-weight:600}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.footer-links a{color:var(--text-dim);font-size:.85rem;transition:color .2s}
+.footer-links a:hover{color:var(--cyan)}
+.footer-contact{display:flex;flex-direction:column;gap:.55rem}
+.contact-item{display:flex;align-items:center;gap:.55rem;font-size:.85rem;color:var(--text-dim)}
+.contact-item svg{width:14px;height:14px;color:var(--green);flex-shrink:0}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:1.25rem;font-size:.78rem;color:var(--text-dim);flex-wrap:wrap;gap:.5rem}
+.certifications{display:flex;gap:.4rem}
+.cert{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:6px;padding:.25em .65em;font-size:.72rem}
+#scrollTop{position:fixed;bottom:1.75rem;right:1.5rem;width:42px;height:42px;background:var(--bg-card);border:1px solid var(--border-bright);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--cyan);opacity:0;pointer-events:none;transition:all .3s;z-index:999;cursor:pointer}
+#scrollTop svg{width:18px;height:18px}
+#scrollTop.visible{opacity:1;pointer-events:auto}
+#scrollTop:hover{box-shadow:var(--glow-cyan);transform:translateY(-3px)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:960px){
+  .hero-content{grid-template-columns:1fr;gap:2.5rem}
+  .hero-visual{display:none}
+  .diag-wrapper,.soh-wrap,.calc-wrapper,.booking-grid,.know-panel-inner{grid-template-columns:1fr}
+  .symptom-grid{grid-template-columns:1fr 1fr}
+  .form-row{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  .nav-links,.nav-cta .btn:first-child{display:none}
+  .hamburger{display:flex}
+}
+@media(max-width:600px){
+  section{padding:3.5rem 1rem}
+  .hero-stats{gap:1.5rem}
+  .know-tabs{gap:.35rem}
+  .know-tab{font-size:.76rem;padding:.38em .85em}
+  .symptom-grid{grid-template-columns:1fr}
+  .service-checks-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="logo-icon"><i data-lucide="zap"></i></div>
+      <div><span class="accent">EV</span> Fornalik</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#uslugi">Usługi</a></li>
+      <li><a href="#diagnosta">Diagnosta</a></li>
+      <li><a href="#kalkulator">Kalkulator SOH</a></li>
+      <li><a href="#wiedza">Wiedza</a></li>
+      <li><a href="#cennik">Cennik</a></li>
+      <li><a href="#rezerwacja">Rezerwacja</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="tel:+48123456789" class="btn btn-outline btn-sm">+48 123 456 789</a>
+      <a href="#rezerwacja" class="btn btn-green btn-sm">Umów wizytę</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+  </div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>Autoryzowany Serwis EV &amp; Hybryda — Warszawa</span>
+      </div>
+      <h1 class="hero-title">Twój pojazd<br><span class="highlight">elektryczny</span><br>w dobrych rękach</h1>
+      <p class="hero-desc">Specjalizujemy się w diagnostyce i naprawie pojazdów elektrycznych, PHEV i hybrydowych. Certyfikowani technicy, dedykowane narzędzia — bez przepłacania.</p>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">850+</div><div class="stat-label">naprawionych EV</div></div>
+        <div class="stat"><div class="stat-num">12 lat</div><div class="stat-label">doświadczenia</div></div>
+        <div class="stat"><div class="stat-num">98%</div><div class="stat-label">zadowolenia</div></div>
+      </div>
+      <div class="hero-btns">
+        <a href="#rezerwacja" class="btn btn-green">Umów diagnostykę</a>
+        <a href="#wiedza" class="btn btn-outline">Kompendium wiedzy</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="ev-diagram">
+        <p class="ev-diag-label">Monitoring baterii — live</p>
+        <div class="ev-gauge-wrap">
+          <div class="pulse-ring">
+            <div class="pulse-inner">
+              <div class="pulse-val" id="heroSOC">87%</div>
+              <div class="pulse-unit">Stan naładowania</div>
+            </div>
+          </div>
+          <div class="ev-metrics">
+            <div class="metric"><div class="metric-val">214 km</div><div class="metric-key">Szacunkowy zasięg</div></div>
+            <div class="metric"><div class="metric-val">34°C</div><div class="metric-key">Temp. baterii</div></div>
+            <div class="metric"><div class="metric-val">94%</div><div class="metric-key">SoH baterii</div></div>
+            <div class="metric"><div class="metric-val">AC 11kW</div><div class="metric-key">Tryb ładowania</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><i data-lucide="award"></i><span><strong>Certyfikat HEV/EV</strong> — Bosch Car Service</span></div>
+    <div class="trust-item"><i data-lucide="battery-charging"></i><span><strong>Diagnostyka baterii</strong> HV do 800V</span></div>
+    <div class="trust-item"><i data-lucide="cpu"></i><span><strong>OEM</strong> oprogramowanie diagnostyczne</span></div>
+    <div class="trust-item"><i data-lucide="shield"></i><span><strong>Gwarancja</strong> na wszystkie naprawy</span></div>
+    <div class="trust-item"><i data-lucide="car"></i><span><strong>50+ marek</strong> obsługiwanych</span></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="uslugi">
+  <div class="container">
+    <div class="section-label">Co oferujemy</div>
+    <h2 class="section-title">Kompleksowy serwis<br>pojazdów zelektryfikowanych</h2>
+    <p class="section-sub">Od prostej diagnostyki po skomplikowane naprawy układów wysokiego napięcia — wszystko w jednym miejscu.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon-wrap"><i data-lucide="search"></i></div>
+        <div class="service-name">Diagnostyka HV</div>
+        <div class="service-desc">Pełna diagnostyka układu wysokiego napięcia, BMS, inwertera i silnika. Odczyt i analiza kodów błędów.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap"><i data-lucide="battery-charging"></i></div>
+        <div class="service-name">Serwis baterii</div>
+        <div class="service-desc">Analiza SoH ogniw, balansowanie pakietów, wymiana modułów i całych pakietów bateryjnych.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap"><i data-lucide="thermometer"></i></div>
+        <div class="service-name">Układ chłodzenia TMS</div>
+        <div class="service-desc">Napełnianie, wymiana płynu chłodzącego baterię. Naprawa pomp i zaworów termostatycznych.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap"><i data-lucide="zap"></i></div>
+        <div class="service-name">Napęd elektryczny</div>
+        <div class="service-desc">Naprawa i wymiana silników elektrycznych, inwerterów DC/AC, przetwornic i systemów rekuperacji.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap"><i data-lucide="plug"></i></div>
+        <div class="service-name">Ładowanie i OBC</div>
+        <div class="service-desc">Diagnostyka i naprawa pokładowej ładowarki OBC, gniazda ładowania, kabli HV i komunikacji CAN.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap"><i data-lucide="settings"></i></div>
+        <div class="service-name">Hybrydy PHEV/HEV</div>
+        <div class="service-desc">Specjalistyczna obsługa układów hybrydowych: CVT, przekładnie planetarne, silniki ISG/BSG.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap"><i data-lucide="disc"></i></div>
+        <div class="service-name">Hamulce i zawieszenie</div>
+        <div class="service-desc">Naprawa układów hamulcowych z uwzględnieniem specyfiki rekuperacji. Geometria kół dla EV.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap"><i data-lucide="terminal"></i></div>
+        <div class="service-name">Aktualizacje software</div>
+        <div class="service-desc">Programowanie ECU, aktualizacje BMS, kalibracja ADAS i oprogramowania zarządzania energią.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNOSTICIAN -->
+<section id="diagnosta" style="background:linear-gradient(180deg,var(--bg-deep) 0%,rgba(0,20,15,.4) 100%)">
+  <div class="container">
+    <div class="section-label">Wirtualny Diagnosta</div>
+    <h2 class="section-title">Wybierz objaw — dowiedz się co dolega Twojemu pojazdowi</h2>
+    <p class="section-sub">Kliknij objaw, który zauważyłeś. Nasz system dostarczy profesjonalną analizę i zalecenia.</p>
+    <div class="diag-wrapper">
+      <div class="symptom-grid" id="symptomGrid"></div>
+      <div class="diag-result" id="diagResult">
+        <div class="diag-empty" id="diagEmpty">
+          <div class="diag-empty-icon"><i data-lucide="scan-search" style="width:48px;height:48px"></i></div>
+          <p>Wybierz objaw z listy, aby otrzymać profesjonalną analizę.</p>
+        </div>
+        <div class="diag-detail" id="diagDetail">
+          <div class="diag-severity" id="diagSev"></div>
+          <div class="diag-title" id="diagTitle"></div>
+          <div class="diag-desc" id="diagDesc"></div>
+          <div class="diag-actions" id="diagActions"></div>
+          <div class="diag-cost">
+            <div><div class="diag-cost-label">Szacowany koszt diagnostyki</div><div class="diag-cost-value" id="diagCost"></div></div>
+            <a href="#rezerwacja" class="btn btn-green btn-sm">Umów wizytę →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOH CALCULATOR -->
+<section id="kalkulator">
+  <div class="container">
+    <div class="section-label">Kalkulator Żywotności Baterii</div>
+    <h2 class="section-title">Estymator stanu technicznego baterii (SoH)</h2>
+    <p class="section-sub">Wprowadź dane swojego pojazdu, aby oszacować aktualny stan baterii trakcyjnej oparty na modelu degradacji elektrochemicznej.</p>
+    <div class="soh-wrap">
+      <div class="soh-form">
+        <div class="form-group">
+          <label>Wiek pojazdu: <span class="range-value" id="ageVal">3 lata</span></label>
+          <input type="range" id="ageSlider" min="0" max="15" value="3" oninput="updateSOH()">
+          <div class="range-labels"><span>0 lat</span><span>15 lat</span></div>
+        </div>
+        <div class="form-group">
+          <label>Przebieg: <span class="range-value" id="milesVal">60 000 km</span></label>
+          <input type="range" id="milesSlider" min="0" max="300000" step="5000" value="60000" oninput="updateSOH()">
+          <div class="range-labels"><span>0 km</span><span>300 000 km</span></div>
+        </div>
+        <div class="form-group">
+          <label>Nawyki ładowania (DC fast charging)</label>
+          <select id="chargingHabit" onchange="updateSOH()">
+            <option value="0">Głównie AC (domowe / Type 2)</option>
+            <option value="1" selected>Mieszane (AC + okazjonalnie DC)</option>
+            <option value="2">Głównie DC szybkie (autostradowe)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Minimalne naładowanie baterii</label>
+          <select id="minSoc" onchange="updateSOH()">
+            <option value="0" selected>Trzymam powyżej 20% SOC</option>
+            <option value="1">Zdarza mi się rozładowywać do 0–10%</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Klimat / narażenie na ekstrema temperatur</label>
+          <select id="climate" onchange="updateSOH()">
+            <option value="0" selected>Umiarkowany (Polska)</option>
+            <option value="1">Zimny lub gorący — regularnie poniżej −15°C lub powyżej +35°C</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Maksymalne naładowanie na co dzień</label>
+          <select id="maxSoc" onchange="updateSOH()">
+            <option value="0" selected>Do 80% na co dzień (zalecane)</option>
+            <option value="1">Regularnie ładuję do 100%</option>
+          </select>
+        </div>
+
+        <!-- COMPACT FORMULA -->
+        <details class="formula-box" id="formulaDetails">
+          <summary>
+            <div>
+              <div class="formula-summary-main">Model matematyczny degradacji</div>
+              <div class="formula-oneliner">SoH = 100 − (wiek × 1,8%) − (km/10000 × 0,07%) − korekty nawykowe</div>
+            </div>
+            <i data-lucide="chevron-down" class="formula-toggle-icon" style="width:16px;height:16px"></i>
+          </summary>
+          <div class="formula-detail">
+            <div class="formula-code">SoH = 100
+  − k<sub>age</sub> × wiek [lata]
+  − k<sub>km</sub> × (przebieg / 10 000)
+  − Δ<sub>charging</sub>  (styl ładowania)
+  − Δ<sub>climate</sub>   (klimat)
+  − Δ<sub>soc_stress</sub> (nawyki SOC)
+
+k<sub>age</sub> = 1,8 %/rok (ogniwa NMC)
+k<sub>km</sub>  = 0,07 %/10 000 km
+Δ<sub>DC</sub>  = +3 % (głównie szybkie ładowanie DC)
+Δ<sub>cold</sub> = +2 % (ekstremalne temperatury)</div>
+          </div>
+        </details>
+      </div>
+
+      <div class="soh-result">
+        <div class="gauge-container">
+          <svg class="gauge-svg" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="82" fill="none" stroke="var(--border-bright)" stroke-width="13"/>
+            <circle cx="100" cy="100" r="82" fill="none" stroke="var(--green)" stroke-width="13"
+              stroke-dasharray="515" stroke-dashoffset="515" stroke-linecap="round"
+              transform="rotate(-90 100 100)" id="gaugeFill"
+              style="transition:stroke-dashoffset 1s ease,stroke .5s ease"/>
+          </svg>
+          <div class="soh-gauge-val">
+            <div class="soh-num" id="sohNum">--</div>
+            <div class="soh-lbl">SoH (%)</div>
+          </div>
+        </div>
+        <div class="soh-status" id="sohStatus">Obliczam...</div>
+        <div class="soh-tips">
+          <h4>Wskazówki optymalizacji</h4>
+          <ul id="sohTipsList"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KNOWLEDGE HUB -->
+<section id="wiedza" style="background:rgba(0,10,20,.4)">
+  <div class="container">
+    <div class="section-label">Kompendium Wiedzy</div>
+    <h2 class="section-title">Wszystko, co powinieneś wiedzieć<br>o swoim zelektryfikowanym aucie</h2>
+    <p class="section-sub">Rzetelna wiedza techniczna podana przystępnie — dla kierowcy, nie inżyniera.</p>
+    <div class="know-tabs">
+      <button class="know-tab active" data-tab="hv">Systemy HV</button>
+      <button class="know-tab" data-tab="regen">Rekuperacja</button>
+      <button class="know-tab" data-tab="tms">Chłodzenie TMS</button>
+      <button class="know-tab" data-tab="hybrid">Pułapki hybryd</button>
+      <button class="know-tab" data-tab="charging">Typy ładowania</button>
+      <button class="know-tab" data-tab="chemistry">Chemia baterii</button>
+    </div>
+    <div id="knowPanels">
+
+      <div class="know-panel active" id="panel-hv">
+        <div class="know-panel-inner">
+          <div class="know-text">
+            <h3>Układy Wysokiego Napięcia (HV)</h3>
+            <p>W pojazdach elektrycznych i hybrydowych PHEV napięcie robocze w układzie trakcyjnym wynosi od <strong>200 V do 800 V</strong>. Nowsze platformy jak Hyundai E-GMP czy Porsche J1 przekraczają 800 V — dla szybszego ładowania i wyższej sprawności silnika.</p>
+            <p>Kable wysokiego napięcia zawsze oznaczone są <strong>kolorem pomarańczowym</strong> — to obowiązkowy standard ISO 6469. Jeśli widzisz pomarańczowy kabel, nigdy go nie dotykaj bez wyłączenia HV.</p>
+            <div class="know-highlight"><strong>Zasada serwisanta:</strong> Przed pracami przy HV technik musi wyjąć bezpiecznik serwisowy (<em>Service Disconnect Plug</em>) i odczekać min. 10–15 min. na rozładowanie kondensatorów w inwerterze.</div>
+            <p>Układ HV składa się z: <strong>pakietu bateryjnego</strong> (zarządzanego przez BMS), <strong>inwertera</strong> (DC→AC dla silnika), <strong>przetwornicy DC/DC</strong> (HV→12V dla sieci niskonapięciowej), <strong>pokładowej ładowarki OBC</strong> oraz gniazda ładowania. Każdy z tych elementów wymaga specjalistycznej diagnostyki i certyfikowanego technika.</p>
+          </div>
+          <div class="know-visual">
+            <div class="info-list">
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="alert-triangle"></i></div><div class="info-body"><strong>Pomarańczowe kable = HV</strong><span>Obowiązkowe oznaczenie ISO 6469. Napięcie zdolne do zabicia człowieka natychmiast — zawsze wymagaj wyłączenia systemu.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="plug"></i></div><div class="info-body"><strong>Service Disconnect Plug</strong><span>Mechaniczny wyłącznik bezpieczeństwa. Jego wyjęcie izoluje baterię od reszty pojazdu.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="zap"></i></div><div class="info-body"><strong>Napięcie: 200–800 V</strong><span>Typowe: 400 V. Nowe platformy 800 V (Ioniq 6, EV9, Taycan) — szybsze ładowanie, wyższa sprawność.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="cpu"></i></div><div class="info-body"><strong>BMS — mózg baterii</strong><span>Monitoruje napięcie każdego ogniwa, temperaturę, prąd i wylicza SoC/SoH w czasie rzeczywistym.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="shield"></i></div><div class="info-body"><strong>Certyfikacja technika</strong><span>Prace przy HV wymagają certyfikacji LV1/LV2 (Bosch, IMI EV). Bez niej — praca nielegalna i niebezpieczna.</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="know-panel" id="panel-regen">
+        <div class="know-panel-inner">
+          <div class="know-text">
+            <h3>Rekuperacja — odzyskiwanie energii</h3>
+            <p>Rekuperacja (ang. <em>regenerative braking</em>) to jeden z fundamentów efektywności EV. Silnik elektryczny podczas hamowania zamienia się w <strong>generator</strong>, przetwarzając energię kinetyczną z powrotem na prąd oddawany do baterii.</p>
+            <p>W zależności od pojazdu i trybu jazdy rekuperacja może odzyskać <strong>do 30% energii</strong>. To właśnie dlatego zużycie klocków hamulcowych w EV jest kilkukrotnie niższe niż w spalinówkach.</p>
+            <div class="know-highlight"><strong>One-Pedal Driving:</strong> Wiele modeli EV (Leaf, EV6, iX) pozwala zatrzymać pojazd bez użycia pedału hamulca. Mechaniczne hamulce pełnią wtedy wyłącznie rolę rezerwową — i przez to szybciej korodują mimo braku zużycia.</div>
+            <p><strong>Poziomy rekuperacji</strong> (B0–B4, Paddle, D/B tryby) pozwalają dostosować intensywność hamowania. Na autostradzie — niski poziom, w mieście — maksymalny. Silna rekuperacja przy zimnej baterii jest <strong>ograniczana przez BMS</strong>, aby nie uszkodzić ogniw.</p>
+          </div>
+          <div class="know-visual">
+            <div class="info-list">
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="zap"></i></div><div class="info-body"><strong>Do 30% energii odzysku</strong><span>W jeździe miejskiej rekuperacja jest najefektywniejsza — częste hamowania = więcej energii z powrotem.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="disc"></i></div><div class="info-body"><strong>Klocki trwają 3× dłużej</strong><span>Większość zatrzymań odbywa się przez silnik elektryczny — hamulce mechaniczne w mieście prawie nie pracują.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="alert-triangle"></i></div><div class="info-body"><strong>Korozja tarcz — realny problem</strong><span>Tarcze nie są zużywane, ale rdzewieją. Po dłuższym postoju głęboka rdza może wpływać na skuteczność. Serwisuj co 2 lata.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="thermometer"></i></div><div class="info-body"><strong>Zimowa ograniczona rekuperacja</strong><span>BMS redukuje moc ładowania przy niskiej temp. ogniw. Naciskaj pedał hamulca wcześniej — rekuperacja reaguje wolniej.</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="know-panel" id="panel-tms">
+        <div class="know-panel-inner">
+          <div class="know-text">
+            <h3>Zarządzanie Termiczne Baterii (TMS)</h3>
+            <p>Bateria litowo-jonowa pracuje najlepiej i degraduje najmniej przy temperaturze między <strong>15°C a 35°C</strong>. Poza tym zakresem traci wydajność i żywotność — zarówno na zimnie, jak i na upale.</p>
+            <p>Nowoczesne EV stosują aktywne chłodzenie cieczą — specjalny płyn glikolowy pompowany przez kanały w modułach bateryjnych. Tańsze modele (starsze Nissan Leaf) używały wyłącznie powietrza — i degradowały szybciej.</p>
+            <div class="know-highlight"><strong>Preconditioning — złoty nawyk EV:</strong> Przed wyjazdem w mróz lub przed szybkim ładowaniem DC zlec pojazdowi rozgrzanie baterii przez aplikację. Pojazd podgrzewa baterię <em>z sieci</em>, nie z własnej baterii — zasięg po wyjściu z domu jest wyższy o 10–20%.</div>
+            <p>Płyn chłodzący baterię <strong>wymaga wymiany</strong> co 5 lat lub 100 000 km. Jest to często pomijany punkt serwisowy — zdegradowany płyn może prowadzić do korozji instalacji chłodniczej i awarii pompy TMS.</p>
+          </div>
+          <div class="know-visual">
+            <div class="info-list">
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="thermometer"></i></div><div class="info-body"><strong>Optimum: 15–35°C</strong><span>W tym zakresie bateria osiąga pełną pojemność i najniższe tempo degradacji.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="snowflake"></i></div><div class="info-body"><strong>Zima: do −40% zasięgu</strong><span>Ogrzewanie kabiny + chemia ogniw + ograniczona rekuperacja. Preconditioning zmniejsza straty do ~15%.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="sun"></i></div><div class="info-body"><strong>Upał: nie ładuj do 100%</strong><span>Przy wysokiej temp. otoczenia ładowanie do 100% SOC znacznie przyspiesza degradację ogniw NMC.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="wrench"></i></div><div class="info-body"><strong>Płyn TMS co 5 lat</strong><span>Zaniedbana wymiana to korozja kanałów chłodzących. Koszt wymiany: 600–900 PLN. Ignorowanie może kosztować 10×więcej.</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="know-panel" id="panel-hybrid">
+        <div class="know-panel-inner">
+          <div class="know-text">
+            <h3>Pułapki właścicieli hybryd PHEV/HEV</h3>
+            <p>Hybryda łączy dwa światy — elektryczny i spalinowy — i ciągnie ze sobą pułapki obu. Właściciele PHEV jeżdżący głównie w trybie EV wpadają w charakterystyczne problemy z silnikiem spalinowym.</p>
+            <p><strong>Problem 1 — rzadko odpala silnik spalinowy.</strong> Jeśli PHEV przejeżdża tygodnie bez odpalenia ICE, system PCV nie pracuje, karbon osadza się na zaworach dolotowych, olej nie regeneruje się i kondensuje wodę. Mimo małego przebiegu silnik wymaga serwisu co rok.</p>
+            <div class="know-highlight"><strong>Złota zasada hybrydy:</strong> Minimum raz na 2 tygodnie przejedź 20 km w trybie HV (nie EV). Pozwoli to zapalić silnikowi do optymalnej temperatury, wypalić wodę z oleju i ustabilizować podzespoły spalinowe.</div>
+            <p><strong>Problem 2 — dwie baterie.</strong> PHEV/HEV ma baterię trakcyjną HV i klasyczny akumulator 12V. Ten drugi żyje 3–5 lat i jest często zapominany — aż do całkowitego unieruchomienia pojazdu, nawet przy pełnej baterii HV.</p>
+          </div>
+          <div class="know-visual">
+            <div class="info-list">
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="droplets"></i></div><div class="info-body"><strong>Olej co rok — bez względu na km</strong><span>PHEV jeżdżący głównie elektrycznie nadal potrzebuje rocznej wymiany oleju. Czas, nie km, degraduje olej.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="battery"></i></div><div class="info-body"><strong>12V akumulator — 3–5 lat</strong><span>W EV/PHEV jest bardziej obciążony niż w spalinówce. Sprawdzaj profilaktycznie — nie czekaj aż padnie.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="settings"></i></div><div class="info-body"><strong>Płyn ATF przekładni hybrydowej</strong><span>Specyficzny fluid różny od klasycznych ATF. Tylko dedykowany do danego modelu. Wymiana co 60–80 000 km.</span></div></div>
+              <div class="info-item"><div class="info-item-icon"><i data-lucide="clock"></i></div><div class="info-body"><strong>Timer ładowania = niższy rachunek</strong><span>PHEV ładuj nocą w taryfie G12. Ustaw timer w aplikacji — pełna bateria rano = 40–60 km gratis.</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="know-panel" id="panel-charging">
+        <div class="know-panel-inner">
+          <div class="know-text">
+            <h3>Typy ładowania — co oznaczają dla baterii</h3>
+            <p>Ładowanie <strong>AC</strong> (Alternating Current) — prąd przemienny z sieci zamieniany przez pokładową ładowarkę OBC na prąd stały. Moc zależy od OBC pojazdu: 3,6 / 7,2 / 11 / 22 kW.</p>
+            <p>Ładowanie <strong>DC</strong> (Direct Current) — przetwornica mocy jest poza pojazdem, w stacji. Napędza baterię bezpośrednio z pominięciem OBC. Stąd ogromne moce: 50, 150, 350 kW i więcej.</p>
+            <div class="know-highlight"><strong>Krzywa ładowania:</strong> Ładowanie DC zwalnia po przekroczeniu ~80% SOC — to celowe działanie BMS chroniące ogniwa. Od 80% do 100% może zająć tyle samo czasu co 0→80%. Na długiej trasie ładuj do 80% i jedź dalej.</div>
+            <p>Regularne codzienne ładowanie DC może skrócić żywotność baterii o <strong>10–15%</strong> względem wyłącznie AC. Używaj DC na trasach, AC — na co dzień. Pojazdy z V2G (Ioniq 5/6, Nissan Leaf) potrafią oddawać energię z powrotem do sieci.</p>
+          </div>
+          <div class="know-visual">
+            <div class="charge-types">
+              <div class="charge-type">
+                <div class="charge-type-head"><span class="charge-type-name">AC domowe (Schuko / 3,6 kW)</span><span class="badge badge-green">Najbezpieczniejsza</span></div>
+                <div class="charge-bar-wrap"><div class="charge-bar charge-bar-ac1"></div></div>
+                <span style="font-size:.78rem;color:var(--text-dim)">8% mocy max · Degradacja: minimalna · 30–40h pełne ładowanie</span>
+              </div>
+              <div class="charge-type">
+                <div class="charge-type-head"><span class="charge-type-name">AC wallbox (11 kW / 22 kW)</span><span class="badge badge-green">Zalecana na co dzień</span></div>
+                <div class="charge-bar-wrap"><div class="charge-bar charge-bar-ac2"></div></div>
+                <span style="font-size:.78rem;color:var(--text-dim)">25% mocy max · Degradacja: minimalna · 4–10h pełne ładowanie</span>
+              </div>
+              <div class="charge-type">
+                <div class="charge-type-head"><span class="charge-type-name">DC szybkie (50 kW CCS)</span><span class="badge badge-cyan">Na trasie OK</span></div>
+                <div class="charge-bar-wrap"><div class="charge-bar charge-bar-dc"></div></div>
+                <span style="font-size:.78rem;color:var(--text-dim)">55% mocy max · Degradacja: umiarkowana · 45–60 min. 10→80%</span>
+              </div>
+              <div class="charge-type">
+                <div class="charge-type-head"><span class="charge-type-name">DC HPC (150–350 kW)</span><span class="badge badge-orange">Okazjonalnie</span></div>
+                <div class="charge-bar-wrap"><div class="charge-bar charge-bar-hpc"></div></div>
+                <span style="font-size:.78rem;color:var(--text-dim)">100% mocy max · Degradacja: wyższa · 15–25 min. 10→80%</span>
+              </div>
+            </div>
+            <div style="margin-top:1rem;padding:.9rem 1rem;background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.15);border-radius:10px;font-size:.83rem;color:var(--text-dim)">
+              <strong style="color:var(--cyan)">Złota reguła 80/20:</strong> Ładuj do 80% na co dzień. Pełne 100% — tylko przed długą trasą. Unikaj rozładowania poniżej 10%.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="know-panel" id="panel-chemistry">
+        <div class="know-panel-inner">
+          <div class="know-text">
+            <h3>Chemia baterii — NMC vs LFP</h3>
+            <p>Nie wszystkie baterie EV są takie same. Chemia ogniw decyduje o zasięgu, żywotności, bezpieczeństwie i nawykach ładowania. Dwa najpopularniejsze typy to <strong>NMC</strong> (nikiel-mangan-kobalt) i <strong>LFP</strong> (litowo-żelazowo-fosforanowe).</p>
+            <p><strong>NMC</strong> oferuje wyższą gęstość energii (więcej zasięgu przy tej samej wadze), ale jest wrażliwszy na wysokie temperatury i pełne naładowanie. Stosują go Tesla Model 3 LR, BMW iX, VW ID.4 Pro.</p>
+            <p><strong>LFP</strong> jest znacznie trwalszy (2000–4000 cykli vs 500–1500 dla NMC), nie zawiera kobaltu (tańszy), jest bezpieczniejszy termicznie. Stosują go Tesla Model 3 SR, BYD, VW ID.3 Entry.</p>
+            <div class="know-highlight"><strong>Zasada dla LFP:</strong> Jeśli masz LFP — ładuj do 100% <em>regularnie</em> (co 2–4 tygodnie przynajmniej), aby BMS mógł prawidłowo skalibrować wskazanie SOC. Dla NMC — trzymaj 80% na co dzień.</div>
+          </div>
+          <div class="know-visual">
+            <table class="comparison-table">
+              <thead><tr><th>Parametr</th><th>NMC</th><th>LFP</th></tr></thead>
+              <tbody>
+                <tr><td>Gęstość energii</td><td class="val-good">Wysoka</td><td>Średnia</td></tr>
+                <tr><td>Żywotność (cykli)</td><td>500–1500</td><td class="val-good">2000–4000</td></tr>
+                <tr><td>Bezpieczeństwo termiczne</td><td>Umiarkowane</td><td class="val-good">Wysokie</td></tr>
+                <tr><td>Cena</td><td>Wyższa</td><td class="val-good">Niższa</td></tr>
+                <tr><td>Ładowanie do 100%</td><td class="val-warn">Unikać na co dzień</td><td class="val-good">Zalecane</td></tr>
+                <tr><td>Zasięg zimą</td><td>Umiarkowany spadek</td><td class="val-warn">Większy spadek</td></tr>
+                <tr><td>Przykłady</td><td>Tesla LR, BMW iX</td><td>Tesla SR, BYD</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE CALCULATOR -->
+<section id="cennik">
+  <div class="container">
+    <div class="section-label">Kalkulator Serwisowy</div>
+    <h2 class="section-title">Skomponuj swój pakiet serwisowy</h2>
+    <p class="section-sub">Zaznacz usługi, które Cię interesują, i sprawdź szacunkowy koszt. Finalna wycena po bezpłatnej konsultacji.</p>
+    <div class="calc-wrapper">
+      <div class="service-items" id="serviceItems"></div>
+      <div class="calc-summary">
+        <h3><i data-lucide="clipboard-list"></i> Twój pakiet</h3>
+        <div class="summary-lines" id="summaryLines">
+          <p class="summary-empty">Zaznacz usługi po lewej stronie</p>
+        </div>
+        <div class="discount-note" id="discountNote" style="display:none">
+          <strong>Rabat pakietowy 10%</strong> — przy wyborze 3 lub więcej usług.
+        </div>
+        <div class="summary-line total-line" id="summaryTotal" style="display:none">
+          <span>Razem (est.)</span>
+          <span id="totalPrice"></span>
+        </div>
+        <button class="btn btn-green" onclick="bookWithPackage()" style="width:100%;justify-content:center;margin-top:1rem">
+          Umów wizytę z tym pakietem →
+        </button>
+        <p style="font-size:.73rem;color:var(--text-dim);margin-top:.65rem;text-align:center">Ceny orientacyjne. Finalna wycena po oględzinach pojazdu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section id="rezerwacja" style="background:rgba(0,5,20,.5)">
+  <div class="container">
+    <div class="section-label">Rezerwacja Wizyty</div>
+    <h2 class="section-title">Umów się online</h2>
+    <p class="section-sub">Wypełnij formularz, a skontaktujemy się z Tobą w ciągu 2 godzin w dni robocze, aby potwierdzić termin.</p>
+    <div class="booking-grid">
+      <div>
+        <div class="booking-form" id="bookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Imię i nazwisko *</label>
+              <input type="text" id="bName" placeholder="Jan Kowalski" class="form-input">
+            </div>
+            <div class="form-group">
+              <label>Numer telefonu *</label>
+              <input type="tel" id="bPhone" placeholder="+48 600 123 456" class="form-input">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Adres e-mail</label>
+            <input type="email" id="bEmail" placeholder="jan@email.pl" class="form-input">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Marka pojazdu *</label>
+              <select id="bMake" class="form-input">
+                <option value="">Wybierz markę</option>
+                <option>Tesla</option><option>BMW</option><option>Volkswagen</option>
+                <option>Hyundai</option><option>Kia</option><option>Toyota</option>
+                <option>Volvo</option><option>Mercedes-Benz</option><option>Audi</option>
+                <option>Porsche</option><option>Nissan</option><option>Renault</option>
+                <option>Peugeot</option><option>Opel</option><option>Ford</option>
+                <option>BYD</option><option>Lexus</option><option>Inne</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Model i rok</label>
+              <input type="text" id="bModel" placeholder="np. Model 3 2022" class="form-input">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Rodzaj pojazdu</label>
+            <select id="bType" class="form-input">
+              <option>BEV — w pełni elektryczny</option>
+              <option>PHEV — hybryda plug-in</option>
+              <option>HEV — hybryda nieładowalna</option>
+              <option>MHEV — mikro hybryda</option>
+            </select>
+          </div>
+
+          <!-- MULTI-SELECT SERVICES -->
+          <div id="packageNoteWrap">
+            <div class="package-note" id="packageNote"></div>
+          </div>
+          <div class="form-group">
+            <label class="service-checks-label">Zakres usług / powód wizyty * <span style="color:var(--text-dim);font-weight:400">(można zaznaczyć kilka)</span></label>
+            <div class="service-checks-grid" id="serviceChecks">
+              <label class="srv-check-item"><input type="checkbox" value="Diagnostyka ogólna EV"> Diagnostyka ogólna EV</label>
+              <label class="srv-check-item"><input type="checkbox" value="Analiza baterii (SoH)"> Analiza baterii (SoH)</label>
+              <label class="srv-check-item"><input type="checkbox" value="Serwis chłodzenia baterii (TMS)"> Serwis chłodzenia TMS</label>
+              <label class="srv-check-item"><input type="checkbox" value="Problem z ładowaniem / OBC"> Problem z ładowaniem</label>
+              <label class="srv-check-item"><input type="checkbox" value="Ostrzeżenie / kontrolka HV"> Kontrolka HV / alarm</label>
+              <label class="srv-check-item"><input type="checkbox" value="Naprawa silnika / inwertera"> Silnik / inwerter</label>
+              <label class="srv-check-item"><input type="checkbox" value="Serwis hamulców EV"> Serwis hamulców EV</label>
+              <label class="srv-check-item"><input type="checkbox" value="Aktualizacja oprogramowania BMS"> Aktualizacja BMS/ECU</label>
+              <label class="srv-check-item"><input type="checkbox" value="Przegląd roczny EV"> Przegląd roczny EV</label>
+              <label class="srv-check-item"><input type="checkbox" value="Wymiana akumulatora 12V"> Akumulator 12V</label>
+              <label class="srv-check-item"><input type="checkbox" value="Geometria kół dla EV"> Geometria kół EV</label>
+              <label class="srv-check-item"><input type="checkbox" value="Inny problem"> Inny problem</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Opis problemu / dodatkowe informacje</label>
+            <textarea id="bDesc" placeholder="Opisz objaw lub pytanie — np. 'Kontrolka baterii świeci od tygodnia, zasięg spadł o 30 km...'"></textarea>
+          </div>
+          <button class="btn btn-green" onclick="submitBooking()" style="width:100%;justify-content:center;font-size:.95rem;padding:.9rem">
+            Wyślij zgłoszenie i umów wizytę
+          </button>
+          <p id="bookingError" style="color:var(--red);font-size:.82rem;display:none;margin-top:.4rem"></p>
+        </div>
+        <div class="booking-confirm" id="bookingConfirm">
+          <div class="confirm-icon">✅</div>
+          <h3 style="color:var(--green)">Zgłoszenie przyjęte!</h3>
+          <p style="color:var(--text-dim);margin:.65rem 0;font-size:.9rem">Twój numer zgłoszenia:</p>
+          <div class="confirm-num" id="confirmNum"></div>
+          <p style="color:var(--text-dim);font-size:.85rem;margin-top:.65rem">Skontaktujemy się w ciągu 2 godzin roboczych. Możesz też zadzwonić: <a href="tel:+48123456789">+48 123 456 789</a></p>
+          <button class="btn btn-outline" onclick="resetBooking()" style="margin-top:1.25rem">Złóż kolejne zgłoszenie</button>
+        </div>
+      </div>
+      <div class="booking-info">
+        <div class="binfo-card"><div class="binfo-icon"><i data-lucide="map-pin"></i></div><div class="binfo-body"><strong>Adres serwisu</strong><span>ul. Elektryczna 42, Warszawa<br>Wjazd od ul. Akumulatorowej</span></div></div>
+        <div class="binfo-card"><div class="binfo-icon"><i data-lucide="clock"></i></div><div class="binfo-body"><strong>Godziny otwarcia</strong><span>Pon – Pt: 8:00 – 18:00<br>Sobota: 9:00 – 14:00<br>Niedziela: nieczynne</span></div></div>
+        <div class="binfo-card"><div class="binfo-icon"><i data-lucide="phone"></i></div><div class="binfo-body"><strong>Kontakt bezpośredni</strong><span>Tel: <a href="tel:+48123456789">+48 123 456 789</a><br>E-mail: serwis@evfornalik.pl</span></div></div>
+        <div class="binfo-card"><div class="binfo-icon"><i data-lucide="car"></i></div><div class="binfo-body"><strong>Dojazd i parking</strong><span>Bezpłatny parking dla klientów. Odbiór pojazdu z domu (usługa płatna). Stacja ładowania AC 22 kW na parkingu.</span></div></div>
+        <div class="binfo-card"><div class="binfo-icon"><i data-lucide="alert-triangle"></i></div><div class="binfo-body"><strong>Awaria drogowa?</strong><span>Jeśli pojazd ma aktywny alarm HV — nie uruchamiaj go. Zadzwoń — pomożemy zorganizować transport bez ryzyka.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:.65rem">
+          <div class="logo-icon"><i data-lucide="zap"></i></div>
+          <div><span class="accent">EV</span> Fornalik</div>
+        </div>
+        <p>Profesjonalny serwis pojazdów elektrycznych i hybrydowych. Certyfikowani technicy, najnowszy sprzęt diagnostyczny, uczciwe ceny.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Usługi</div>
+        <ul class="footer-links">
+          <li><a href="#uslugi">Diagnostyka HV</a></li>
+          <li><a href="#uslugi">Serwis baterii</a></li>
+          <li><a href="#uslugi">Układ TMS</a></li>
+          <li><a href="#uslugi">Hybrydy PHEV</a></li>
+          <li><a href="#uslugi">Aktualizacje SW</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Wiedza</div>
+        <ul class="footer-links">
+          <li><a href="#wiedza">Systemy HV</a></li>
+          <li><a href="#wiedza">Rekuperacja</a></li>
+          <li><a href="#wiedza">Chłodzenie TMS</a></li>
+          <li><a href="#wiedza">Pułapki hybryd</a></li>
+          <li><a href="#wiedza">Typy ładowania</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Kontakt</div>
+        <div class="footer-contact">
+          <div class="contact-item"><i data-lucide="map-pin"></i>ul. Elektryczna 42, Warszawa</div>
+          <div class="contact-item"><i data-lucide="phone"></i><a href="tel:+48123456789">+48 123 456 789</a></div>
+          <div class="contact-item"><i data-lucide="mail"></i><a href="mailto:serwis@evfornalik.pl">serwis@evfornalik.pl</a></div>
+          <div class="contact-item"><i data-lucide="clock"></i>Pon–Pt: 8:00–18:00</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EV Fornalik. Wszelkie prawa zastrzeżone.</span>
+      <div class="certifications">
+        <span class="cert">Bosch CS</span>
+        <span class="cert">IMI EV LV2</span>
+        <span class="cert">ISO 6469</span>
+        <span class="cert">NF Repair</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i data-lucide="arrow-up"></i>
+</button>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// Init Lucide icons after DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  if(window.lucide) lucide.createIcons();
+});
+
+// ===== SCROLL TOP =====
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+});
+
+// ===== HAMBURGER =====
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  const nl = document.querySelector('.nav-links');
+  const nc = document.querySelector('.nav-cta');
+  if(menuOpen) {
+    nl.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:58px;left:0;right:0;background:rgba(5,5,13,.97);padding:1.25rem 1.5rem;gap:.9rem;border-bottom:1px solid var(--border);z-index:999';
+    nc.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:220px;left:0;right:0;background:rgba(5,5,13,.97);padding:.9rem 1.5rem;gap:.5rem;border-bottom:1px solid var(--border);z-index:999';
+  } else {
+    nl.style.cssText = '';
+    nc.style.cssText = '';
+  }
+}
+
+// ===== HERO SOC ANIMATION =====
+(function(){
+  const vals = ['87%','88%','86%','89%','87%','85%','88%','90%'];
+  let i = 0;
+  setInterval(() => { i = (i+1) % vals.length; document.getElementById('heroSOC').textContent = vals[i]; }, 3000);
+})();
+
+// ===== KNOWLEDGE TABS =====
+document.querySelectorAll('.know-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.know-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.know-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    const panel = document.getElementById('panel-' + tab.dataset.tab);
+    if(panel) panel.classList.add('active');
+  });
+});
+
+// ===== VIRTUAL DIAGNOSTICIAN =====
+const symptoms = [
+  { icon:'snowflake', text:'Spadek zasięgu zimą', sev:'ok', sevLabel:'Normalne zachowanie',
+    title:'Zimowy spadek zasięgu — co jest przyczyną?',
+    desc:'Spadek zasięgu zimą o 20–40% to całkowicie normalne zjawisko. Przyczyny: (1) ogrzewanie kabiny pobiera 0,5–3 kW, (2) chemia ogniw przy niskiej temperaturze zwalnia reakcje elektrochemiczne — bateria "traci" pojemność odwracalnie, (3) BMS ogranicza rekuperację, aby nie uszkodzić zimnych ogniw. Preconditioning — rozgrzanie baterii przez ładowarkę przed wyjazdem — zmniejsza straty do ok. 15%.',
+    actions:['Uruchom preconditioning 15–20 min. przed wyjazdem','Ładuj rano — bateria jest ciepła po ładowaniu','Ogrzewaj fotel/kierownicę zamiast całej kabiny','Wymuś hamowanie regeneracyjne B-mode w mieście'],
+    cost:'0 PLN (normalne zachowanie) lub 299 PLN diagnostyka SoH' },
+  { icon:'volume-2', text:'Pisk przy hamowaniu', sev:'warn', sevLabel:'Wymaga sprawdzenia',
+    title:'Pisk lub zgrzyt przy hamowaniu',
+    desc:'Tarcze i klocki hamulcowe w EV są rzadko używane (większość hamowania to rekuperacja), przez co metalowe powierzchnie łatwo pokrywają się rdzą. Delikatny pisk może być tylko rdzą, ale głębszy zgrzyt lub wibracje mogą oznaczać przywarte szczęki, pękniętą tarczę lub uszkodzony zacisk. Zalecamy coroczną kontrolę hamulców niezależnie od przebiegu.',
+    actions:['Sprawdź wizualnie tarcze przez felgi — rdza głęboka = wymiana','Wykonaj kilka mocnych zatrzymań aby "wypalić" rdzę','Skontaktuj się z nami, jeśli pisk się utrzymuje po 5 km'],
+    cost:'149–399 PLN inspekcja + szlifowanie lub wymiana klocków/tarcz' },
+  { icon:'alert-circle', text:'Nagłe wyłączenie / alarm BMS', sev:'crit', sevLabel:'PILNE — nie odkładaj',
+    title:'Nagłe wyłączenie lub alarm BMS / HV',
+    desc:'Nagłe wyłączenie lub alarm BMS może oznaczać: nierównowagę napięć ogniw (cell imbalance), rozwarcie lub zwarcie w pakiecie, przegrzanie modułów, awarię BMS lub inwertera. Jest to stan potencjalnie niebezpieczny — w skrajnych przypadkach wadliwy pakiet może stanowić ryzyko pożaru termicznego. Nie ignoruj.',
+    actions:['Zaparkuj pojazd bezpiecznie poza garażem','Nie próbuj ponownie uruchamiać — zadzwoń do nas','Jeśli czujesz spaleniznę lub dym — odejdź i zadzwoń na 112','Nie otwieraj pokrywy bagażnika / podłogi — dostęp HV'],
+    cost:'Od 499 PLN diagnostyka + od 1500 PLN naprawa' },
+  { icon:'plug', text:'Problem z ładowaniem', sev:'warn', sevLabel:'Wymaga diagnostyki',
+    title:'Pojazd nie ładuje się lub ładuje wolniej',
+    desc:'Problemy z ładowaniem mogą mieć wiele przyczyn: uszkodzone gniazdo ładowania (utlenione piny, złamany zatrzask), awaria pokładowej ładowarki OBC, błąd komunikacji BMS–ładowarka przez CAN, uszkodzony kabel lub zabezpieczenia termiczne OBC. Jeśli pojazd nie ładuje się tylko na jednej stacji — problem jest po stronie stacji. Jeśli nigdzie — to pojazd.',
+    actions:['Sprawdź inny kabel i inną stację','Sprawdź gniazdo — widoczne uszkodzenia, rdza na pinach?','Wykonaj reset pojazdu (wyloguj, wyłącz na 5 min.)','Jeśli problem powtarza się — diagnostyka OBC konieczna'],
+    cost:'299–799 PLN diagnostyka + naprawa OBC/gniazda' },
+  { icon:'triangle-alert', text:'Kontrolka HV / wysokiego napięcia', sev:'crit', sevLabel:'PILNE — nie jedź dalej',
+    title:'Świeci się kontrolka układu HV',
+    desc:'Aktywna kontrolka HV (pomarańczowy trójkąt z wykrzyknikiem + HV) oznacza wykryty przez BMS problem w obwodzie wysokiego napięcia: izolacja HV poniżej progu, uszkodzenie wiązki HV, problem z bezpiecznikiem, awaria inwertera lub nieszczelność ogniwa. NIGDY nie ignoruj tej kontrolki.',
+    actions:['Nie kontynuuj jazdy — zaparkuj bezpiecznie','Wyłącz pojazd i wyjdź — nie otwieraj przestrzeni bagażowej','Zadzwoń: +48 123 456 789','Pojazd musi być przetransportowany — nie uruchamiaj'],
+    cost:'Od 499 PLN diagnostyka HV' },
+  { icon:'thermometer', text:'Przegrzewanie baterii', sev:'crit', sevLabel:'Wymaga reakcji',
+    title:'Bateria się przegrzewa / ostrzeżenie termiczne',
+    desc:'Ostrzeżenie termiczne po szybkim ładowaniu lub intensywnej jeździe może być normalne (TMS pracuje intensywnie). Jednak jeśli pojawia się w normalnych warunkach lub towarzyszy mu gwałtowny spadek mocy — to sygnał awarii TMS. Możliwe przyczyny: zdegradowany płyn chłodzący, awaria pompy, nieszczelność, zablokowany czujnik temperatury.',
+    actions:['Zatrzymaj się i wyłącz szybkie ładowanie','Odczekaj 30 min. przed dalszą jazdą','Sprawdź poziom płynu chłodzącego baterii','Jedź do serwisu przy najbliższej okazji'],
+    cost:'399–999 PLN diagnostyka TMS + naprawa' },
+  { icon:'trending-down', text:'Zwiększone zużycie energii', sev:'warn', sevLabel:'Warto sprawdzić',
+    title:'Zasięg wyraźnie zmalał — więcej kWh/100km',
+    desc:'Nagły wzrost zużycia (np. z 16 do 22 kWh/100km) może oznaczać: degradację baterii (SoH < 80%), uszkodzenie łożyska koła lub zacisku hamulcowego (opór mechaniczny), niskie ciśnienie w oponach (każdy brakujący bar = +6% zużycia), błędną kalibrację BMS, lub u hybryd — nadmierne użycie silnika ICE wskutek awarii trybu EV.',
+    actions:['Sprawdź ciśnienie opon na zimno — standard dla EV to 2,5–3,0 bar','Wykonaj obliczeniowy test zasięgu (pełne 100% → 0%)','Sprawdź historię serwisową — kiedy ostatnia inspekcja hamulców?','Zlec diagnostykę SoH i odczyt kodów błędów'],
+    cost:'199–499 PLN diagnostyka + ewentualna naprawa' },
+  { icon:'activity', text:'Drgania przy przyspieszaniu', sev:'warn', sevLabel:'Wymaga sprawdzenia',
+    title:'Wibracje lub szarpanie podczas przyspieszania',
+    desc:'Drgania przy przyspieszaniu w EV mogą oznaczać: uszkodzone przeguby homokinetyczne (CV joints) — szczególnie przy napędzie AWD, poluzowane mocowanie silnika elektrycznego, rzadziej problem z inwerterem generującym nierówny moment. W hybrydach dochodzi ryzyko awarii sprzęgła rozdzielającego napęd.',
+    actions:['Sprawdź, czy drgania nasilają się przy skręcie (ból przegubu)','Obserwuj, czy problem jest przy zimnym rozruchu czy cały czas','Sprawdź wizualnie osłony przegubów — pęknięta = wymiana','Zleć przegląd zawieszenia i napędu'],
+    cost:'299–699 PLN diagnostyka + ewentualny remont napędu' },
+  { icon:'battery-low', text:'Rozładowuje się akumulator 12V', sev:'warn', sevLabel:'Częsty problem',
+    title:'Akumulator 12V rozładowuje się, pojazd nie wstaje',
+    desc:'W EV nadal jest klasyczny akumulator 12V odpowiadający za "budzenie" całego układu, BMS, zamki i systemy bezpieczeństwa. Jest bardziej obciążony niż w spalinówkach (ciągły pobór przez komputery w trybie czuwania), żyje 3–5 lat i jest często zapominany. Rozładowanie 12V = pojazd unieruchomiony, nawet przy pełnej baterii HV.',
+    actions:['Nie ładuj 12V ze złączki OBD — to za wolne','Skontaktuj się — wymienimy akumulator lub pomożemy uruchomić','Planuj wymianę profilaktycznie co 4 lata','Kup ładowarkę CTEK dla EV i trzymaj akumulator naładowany zimą'],
+    cost:'199–499 PLN diagnostyka + wymiana akumulatora 12V' },
+  { icon:'code', text:'Błędy / kody BMS na ekranie', sev:'warn', sevLabel:'Wymaga odczytu',
+    title:'Aktywne kody błędów BMS lub inwertera',
+    desc:'Kod błędu BMS w aplikacji lub na zegarach to sygnał, że jeden z monitorowanych parametrów przekroczył próg alarmowy. Może to być: nierówność napięć ogniw, temperatura poza progiem, błąd komunikacji, problem z czujnikiem prądu. Część kodów to ostrzeżenia chwilowe (np. po mrozie), inne wymagają natychmiastowej interwencji.',
+    actions:['Zanotuj pełną nazwę kodu (P0AXX, B0XXX) lub zrób zdjęcie','Nie kasuj kodu bez diagnostyki — kasowanie maskuje problem','Zleć odczyt OBD2 / OEM diagnostiką w naszym serwisie','Sprawdź w aplikacji pojazdu historię błędów'],
+    cost:'399–799 PLN odczyt kodów + diagnostyka głęboka' }
+];
+
+const grid = document.getElementById('symptomGrid');
+symptoms.forEach((s, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'symptom-btn';
+  btn.innerHTML = `<span class="s-icon"><i data-lucide="${s.icon}" style="width:18px;height:18px"></i></span><span class="s-text">${s.text}</span>`;
+  btn.onclick = () => showDiag(i, btn);
+  grid.appendChild(btn);
+});
+
+// Re-init Lucide after dynamic content added
+setTimeout(() => { if(window.lucide) lucide.createIcons(); }, 100);
+
+function showDiag(i, btn) {
+  document.querySelectorAll('.symptom-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const s = symptoms[i];
+  document.getElementById('diagEmpty').style.display = 'none';
+  const detail = document.getElementById('diagDetail');
+  detail.classList.add('visible');
+  const sevEl = document.getElementById('diagSev');
+  sevEl.className = 'diag-severity';
+  if(s.sev === 'ok') { sevEl.classList.add('sev-ok'); sevEl.textContent = '✓ ' + s.sevLabel; }
+  else if(s.sev === 'warn') { sevEl.classList.add('sev-warn'); sevEl.textContent = '⚠ ' + s.sevLabel; }
+  else { sevEl.classList.add('sev-crit'); sevEl.textContent = '● ' + s.sevLabel; }
+  document.getElementById('diagTitle').textContent = s.title;
+  document.getElementById('diagDesc').textContent = s.desc;
+  document.getElementById('diagActions').innerHTML = '<h4>Zalecane kroki</h4><ul>' + s.actions.map(a => `<li>${a}</li>`).join('') + '</ul>';
+  document.getElementById('diagCost').textContent = s.cost;
+}
+
+// ===== SOH CALCULATOR =====
+function updateSOH() {
+  const age = parseInt(document.getElementById('ageSlider').value);
+  const miles = parseInt(document.getElementById('milesSlider').value);
+  const ch = parseInt(document.getElementById('chargingHabit').value);
+  const minSoc = parseInt(document.getElementById('minSoc').value);
+  const climate = parseInt(document.getElementById('climate').value);
+  const maxSoc = parseInt(document.getElementById('maxSoc').value);
+  document.getElementById('ageVal').textContent = age === 1 ? '1 rok' : age < 5 ? age + ' lata' : age + ' lat';
+  document.getElementById('milesVal').textContent = (miles / 1000).toFixed(0) + ' 000 km';
+  const k_age = 1.8, k_km = 0.07;
+  const chD = [0, 1.5, 4][ch];
+  let soh = 100 - (k_age * age) - (k_km * (miles / 10000)) - chD - (minSoc * 2) - (climate * 2) - (maxSoc * 1.5);
+  soh = Math.max(40, Math.min(100, Math.round(soh)));
+  document.getElementById('sohNum').textContent = soh + '%';
+  const circ = 515;
+  const offset = circ - (circ * (soh / 100));
+  const gauge = document.getElementById('gaugeFill');
+  gauge.setAttribute('stroke-dashoffset', offset);
+  let color, statusText, statusStyle;
+  if(soh >= 85) { color = 'var(--green)'; statusText = '✓ Stan bardzo dobry'; statusStyle = 'background:rgba(0,255,136,.12);color:var(--green);border:1px solid rgba(0,255,136,.3)'; }
+  else if(soh >= 75) { color = 'var(--cyan)'; statusText = '◎ Stan dobry'; statusStyle = 'background:rgba(0,212,255,.12);color:var(--cyan);border:1px solid rgba(0,212,255,.3)'; }
+  else if(soh >= 60) { color = 'var(--orange)'; statusText = '⚠ Stan przeciętny — rozważ serwis'; statusStyle = 'background:rgba(255,107,0,.12);color:var(--orange);border:1px solid rgba(255,107,0,.3)'; }
+  else { color = 'var(--red)'; statusText = '⚠ Stan krytyczny — wymień lub regeneruj baterię'; statusStyle = 'background:rgba(255,51,85,.12);color:var(--red);border:1px solid rgba(255,51,85,.3)'; }
+  gauge.setAttribute('stroke', color);
+  document.getElementById('sohNum').style.color = color;
+  const statusEl = document.getElementById('sohStatus');
+  statusEl.textContent = statusText;
+  statusEl.style.cssText = statusStyle;
+  const tips = [];
+  if(ch >= 1) tips.push('Ogranicz DC do tras — na co dzień używaj wallboxa AC');
+  if(maxSoc >= 1) tips.push('Ustaw limit ładowania na 80% (aplikacja pojazdu) — zwiększa żywotność o 20–30%');
+  if(minSoc >= 1) tips.push('Unikaj rozładowania poniżej 10% SOC — głębokie rozładowania przyśpieszają degradację');
+  if(climate >= 1) tips.push('Używaj preconditioningu przed zimowym wyjazdem i przed szybkim ładowaniem DC');
+  if(age >= 5) tips.push('Po 5 latach warto zlecić pełną diagnostykę SoH — dokładny raport ogniw u specjalisty');
+  if(soh < 75) tips.push('Przy SoH < 75% rozważ regenerację pakietu — zasięg może wzrosnąć o 25–40%');
+  tips.push('Regularne serwisowanie TMS pomaga utrzymać optymalną temperaturę ogniw przez cały rok');
+  document.getElementById('sohTipsList').innerHTML = tips.slice(0, 5).map(t => `<li>${t}</li>`).join('');
+}
+updateSOH();
+
+// ===== SERVICE CALCULATOR =====
+const calcServices = [
+  {name:'Diagnostyka ogólna EV', desc:'Odczyt kodów błędów, analiza systemów, raport', price:299},
+  {name:'Pełna analiza SoH baterii', desc:'Raport żywotności ogniw z wykresem, porównanie z normą', price:499},
+  {name:'Wymiana płynu TMS', desc:'Opróżnienie i napełnienie układu chłodzenia baterii', price:650},
+  {name:'Naprawa OBC (pokładowa ładowarka)', desc:'Diagnostyka i naprawa pokładowej ładowarki AC', price:1200, prefix:'od '},
+  {name:'Serwis hamulców EV', desc:'Inspekcja, tarcze i klocki, płyn hamulcowy', price:450, prefix:'od '},
+  {name:'Wymiana akumulatora 12V', desc:'Akumulator AGM/EFB + konfiguracja BMS', price:380},
+  {name:'Aktualizacja oprogramowania BMS', desc:'Programowanie sterownika BMS do najnowszej wersji', price:350},
+  {name:'Przegląd roczny EV', desc:'Kompletna inspekcja 60 punktów kontrolnych', price:499},
+  {name:'Inspekcja złącza ładowania', desc:'Czyszczenie, inspekcja pinów, test komunikacji', price:149},
+  {name:'Geometria kół dla EV', desc:'Ustawienie z uwzględnieniem ciężaru baterii trakcyjnej', price:280},
+];
+let selectedServices = {};
+const itemsContainer = document.getElementById('serviceItems');
+calcServices.forEach((s, i) => {
+  const item = document.createElement('div');
+  item.className = 'service-item';
+  item.dataset.idx = i;
+  item.onclick = () => toggleService(i, item, s);
+  item.innerHTML = `<input type="checkbox" id="srv${i}" onclick="event.stopPropagation();toggleService(${i},document.querySelector('[data-idx=\\'${i}\\']'),calcServices[${i}])">
+    <div class="service-item-body"><div class="service-item-name">${s.name}</div><div class="service-item-desc">${s.desc}</div></div>
+    <div class="service-item-price">${s.prefix||''}${s.price.toLocaleString('pl')} PLN</div>`;
+  itemsContainer.appendChild(item);
+});
+function toggleService(i, item, s) {
+  const cb = document.getElementById('srv' + i);
+  selectedServices[i] = !selectedServices[i];
+  cb.checked = selectedServices[i];
+  item.classList.toggle('selected', selectedServices[i]);
+  updateSummary();
+}
+function updateSummary() {
+  const lines = document.getElementById('summaryLines');
+  const total = document.getElementById('summaryTotal');
+  const price = document.getElementById('totalPrice');
+  const disc = document.getElementById('discountNote');
+  const sel = Object.entries(selectedServices).filter(([,v]) => v);
+  if(!sel.length) {
+    lines.innerHTML = '<p class="summary-empty">Zaznacz usługi po lewej stronie</p>';
+    total.style.display = 'none'; disc.style.display = 'none'; return;
+  }
+  let sum = 0;
+  lines.innerHTML = sel.map(([i]) => { sum += calcServices[i].price; return `<div class="summary-line"><span>${calcServices[i].name}</span><span>${calcServices[i].price.toLocaleString('pl')} PLN</span></div>`; }).join('');
+  const discount = sel.length >= 3 ? 0.9 : 1;
+  const finalSum = Math.round(sum * discount);
+  disc.style.display = sel.length >= 3 ? 'block' : 'none';
+  total.style.display = 'flex';
+  price.innerHTML = (discount < 1 ? `<span style="text-decoration:line-through;color:var(--text-dim);font-size:.82rem;margin-right:.3rem">${sum.toLocaleString('pl')}</span>` : '') + finalSum.toLocaleString('pl') + ' PLN';
+}
+
+// Package → Booking transfer
+function bookWithPackage() {
+  const sel = Object.entries(selectedServices).filter(([,v]) => v).map(([i]) => calcServices[i].name);
+  document.getElementById('rezerwacja').scrollIntoView({behavior:'smooth'});
+  if(!sel.length) return;
+  setTimeout(() => {
+    // Pre-check matching service checkboxes in booking form
+    const checkItems = document.querySelectorAll('#serviceChecks .srv-check-item');
+    checkItems.forEach(item => {
+      const cb = item.querySelector('input');
+      const val = cb.value.toLowerCase();
+      const matched = sel.some(s => {
+        const sLow = s.toLowerCase();
+        return val.includes(sLow.split(' ')[0]) || sLow.includes(val.split(' ')[0]);
+      });
+      if(matched) { cb.checked = true; item.classList.add('checked'); }
+    });
+    // Show package note
+    const note = document.getElementById('packageNote');
+    note.style.display = 'block';
+    note.innerHTML = `<strong>Wstępnie wybrano ${sel.length} ${sel.length === 1 ? 'usługę' : 'usługi'} z kalkulatora serwisowego.</strong> Możesz dowolnie modyfikować wybór poniżej.`;
+    if(window.lucide) lucide.createIcons();
+  }, 700);
+}
+
+// Service checkbox interactivity (booking form)
+document.querySelectorAll('#serviceChecks input[type=checkbox]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    cb.closest('.srv-check-item').classList.toggle('checked', cb.checked);
+  });
+});
+
+// ===== BOOKING FORM =====
+function submitBooking() {
+  const name = document.getElementById('bName').value.trim();
+  const phone = document.getElementById('bPhone').value.trim();
+  const checkedServices = Array.from(document.querySelectorAll('#serviceChecks input:checked')).map(i => i.value);
+  const errEl = document.getElementById('bookingError');
+  if(!name || !phone) { errEl.textContent = 'Proszę wypełnić pola: imię/nazwisko i telefon.'; errEl.style.display = 'block'; return; }
+  if(checkedServices.length === 0) { errEl.textContent = 'Proszę wybrać co najmniej jedną usługę lub powód wizyty.'; errEl.style.display = 'block'; return; }
+  errEl.style.display = 'none';
+  const id = 'EVF-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 90000) + 10000);
+  document.getElementById('confirmNum').textContent = id;
+  document.getElementById('bookingForm').style.display = 'none';
+  document.getElementById('bookingConfirm').style.display = 'block';
+}
+function resetBooking() {
+  document.getElementById('bookingForm').style.display = 'flex';
+  document.getElementById('bookingConfirm').style.display = 'none';
+  ['bName','bPhone','bEmail','bDesc','bModel'].forEach(id => document.getElementById(id).value = '');
+  document.querySelectorAll('#serviceChecks input').forEach(cb => { cb.checked = false; cb.closest('.srv-check-item').classList.remove('checked'); });
+  document.getElementById('packageNote').style.display = 'none';
+}
+
+// ===== INTERSECTION OBSERVER =====
+const cards = document.querySelectorAll('.service-card,.info-item,.charge-type,.binfo-card');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.style.opacity = 1; e.target.style.transform = 'translateY(0)'; io.unobserve(e.target); } });
+}, {threshold:.1});
+cards.forEach(c => { c.style.opacity = 0; c.style.transform = 'translateY(16px)'; c.style.transition = 'opacity .45s ease,transform .45s ease'; io.observe(c); });
+</script>
+</body>
+</html>

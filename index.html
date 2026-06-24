@@ -349,10 +349,10 @@ footer{background:var(--bg-card);border-top:1px solid var(--border);padding:3rem
 <!-- NAV -->
 <nav id="navbar">
   <div class="nav-inner">
-    <div class="nav-logo">
+    <a href="#" class="nav-logo" style="text-decoration:none;color:inherit">
       <div class="logo-icon"><i data-lucide="zap"></i></div>
       <div><span class="accent">EV</span> Fornalik</div>
-    </div>
+    </a>
     <ul class="nav-links">
       <li><a href="#uslugi">Usługi</a></li>
       <li><a href="#diagnosta">Diagnosta</a></li>
@@ -362,7 +362,7 @@ footer{background:var(--bg-card);border-top:1px solid var(--border);padding:3rem
       <li><a href="#rezerwacja">Rezerwacja</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="tel:+48123456789" class="btn btn-outline btn-sm">+48 123 456 789</a>
+      <a href="tel:+48697662671" class="btn btn-outline btn-sm">+48 697 662 671</a>
       <a href="#rezerwacja" class="btn btn-green btn-sm">Umów wizytę</a>
     </div>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -385,7 +385,7 @@ footer{background:var(--bg-card);border-top:1px solid var(--border);padding:3rem
     <div>
       <div class="hero-eyebrow">
         <div class="hero-eyebrow-line"></div>
-        <span>Autoryzowany Serwis EV &amp; Hybryda — Warszawa</span>
+        <span>Autoryzowany Serwis EV &amp; Hybryda</span>
       </div>
       <h1 class="hero-title">Twój pojazd<br><span class="highlight">elektryczny</span><br>w dobrych rękach</h1>
       <p class="hero-desc">Specjalizujemy się w diagnostyce i naprawie pojazdów elektrycznych, PHEV i hybrydowych. Certyfikowani technicy, dedykowane narzędzia — bez przepłacania.</p>
@@ -428,7 +428,6 @@ footer{background:var(--bg-card);border-top:1px solid var(--border);padding:3rem
     <div class="trust-item"><i data-lucide="battery-charging"></i><span><strong>Diagnostyka baterii</strong> HV do 800V</span></div>
     <div class="trust-item"><i data-lucide="cpu"></i><span><strong>OEM</strong> oprogramowanie diagnostyczne</span></div>
     <div class="trust-item"><i data-lucide="shield"></i><span><strong>Gwarancja</strong> na wszystkie naprawy</span></div>
-    <div class="trust-item"><i data-lucide="car"></i><span><strong>50+ marek</strong> obsługiwanych</span></div>
   </div>
 </div>
 
@@ -888,14 +887,14 @@ k<sub>km</sub>  = 0,07 %/10 000 km
           <h3 style="color:var(--green)">Zgłoszenie przyjęte!</h3>
           <p style="color:var(--text-dim);margin:.65rem 0;font-size:.9rem">Twój numer zgłoszenia:</p>
           <div class="confirm-num" id="confirmNum"></div>
-          <p style="color:var(--text-dim);font-size:.85rem;margin-top:.65rem">Skontaktujemy się w ciągu 2 godzin roboczych. Możesz też zadzwonić: <a href="tel:+48123456789">+48 123 456 789</a></p>
+          <p style="color:var(--text-dim);font-size:.85rem;margin-top:.65rem">Skontaktujemy się w ciągu 2 godzin roboczych. Możesz też zadzwonić: <a href="tel:+48697662671">+48 697 662 671</a></p>
           <button class="btn btn-outline" onclick="resetBooking()" style="margin-top:1.25rem">Złóż kolejne zgłoszenie</button>
         </div>
       </div>
       <div class="booking-info">
-        <div class="binfo-card"><div class="binfo-icon"><i data-lucide="map-pin"></i></div><div class="binfo-body"><strong>Adres serwisu</strong><span>ul. Elektryczna 42, Warszawa<br>Wjazd od ul. Akumulatorowej</span></div></div>
-        <div class="binfo-card"><div class="binfo-icon"><i data-lucide="clock"></i></div><div class="binfo-body"><strong>Godziny otwarcia</strong><span>Pon – Pt: 8:00 – 18:00<br>Sobota: 9:00 – 14:00<br>Niedziela: nieczynne</span></div></div>
-        <div class="binfo-card"><div class="binfo-icon"><i data-lucide="phone"></i></div><div class="binfo-body"><strong>Kontakt bezpośredni</strong><span>Tel: <a href="tel:+48123456789">+48 123 456 789</a><br>E-mail: serwis@evfornalik.pl</span></div></div>
+        <div class="binfo-card"><div class="binfo-icon"><i data-lucide="map-pin"></i></div><div class="binfo-body"><strong>Adres serwisu</strong><span>AUTOPERFEKT Marian Fornalik<br>Majków Duży 77<br>97-371 Wola Krzysztoporska</span></div></div>
+        <div class="binfo-card"><div class="binfo-icon"><i data-lucide="clock"></i></div><div class="binfo-body"><strong>Godziny otwarcia</strong><span>Pon – Pt: 8:00 – 18:00<br>Sobota – Niedziela: nieczynne</span></div></div>
+        <div class="binfo-card"><div class="binfo-icon"><i data-lucide="phone"></i></div><div class="binfo-body"><strong>Kontakt bezpośredni</strong><span>Tel: <a href="tel:+48697662671">+48 697 662 671</a><br>E-mail: <a href="mailto:biuro@evfornalik.pl">biuro@evfornalik.pl</a></span></div></div>
         <div class="binfo-card"><div class="binfo-icon"><i data-lucide="car"></i></div><div class="binfo-body"><strong>Dojazd i parking</strong><span>Bezpłatny parking dla klientów. Odbiór pojazdu z domu (usługa płatna). Stacja ładowania AC 22 kW na parkingu.</span></div></div>
         <div class="binfo-card"><div class="binfo-icon"><i data-lucide="alert-triangle"></i></div><div class="binfo-body"><strong>Awaria drogowa?</strong><span>Jeśli pojazd ma aktywny alarm HV — nie uruchamiaj go. Zadzwoń — pomożemy zorganizować transport bez ryzyka.</span></div></div>
       </div>
@@ -904,48 +903,10 @@ k<sub>km</sub>  = 0,07 %/10 000 km
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer style="padding:1.25rem 1.5rem">
   <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="nav-logo" style="margin-bottom:.65rem">
-          <div class="logo-icon"><i data-lucide="zap"></i></div>
-          <div><span class="accent">EV</span> Fornalik</div>
-        </div>
-        <p>Profesjonalny serwis pojazdów elektrycznych i hybrydowych. Certyfikowani technicy, najnowszy sprzęt diagnostyczny, uczciwe ceny.</p>
-      </div>
-      <div>
-        <div class="footer-heading">Usługi</div>
-        <ul class="footer-links">
-          <li><a href="#uslugi">Diagnostyka HV</a></li>
-          <li><a href="#uslugi">Serwis baterii</a></li>
-          <li><a href="#uslugi">Układ TMS</a></li>
-          <li><a href="#uslugi">Hybrydy PHEV</a></li>
-          <li><a href="#uslugi">Aktualizacje SW</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-heading">Wiedza</div>
-        <ul class="footer-links">
-          <li><a href="#wiedza">Systemy HV</a></li>
-          <li><a href="#wiedza">Rekuperacja</a></li>
-          <li><a href="#wiedza">Chłodzenie TMS</a></li>
-          <li><a href="#wiedza">Pułapki hybryd</a></li>
-          <li><a href="#wiedza">Typy ładowania</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-heading">Kontakt</div>
-        <div class="footer-contact">
-          <div class="contact-item"><i data-lucide="map-pin"></i>ul. Elektryczna 42, Warszawa</div>
-          <div class="contact-item"><i data-lucide="phone"></i><a href="tel:+48123456789">+48 123 456 789</a></div>
-          <div class="contact-item"><i data-lucide="mail"></i><a href="mailto:serwis@evfornalik.pl">serwis@evfornalik.pl</a></div>
-          <div class="contact-item"><i data-lucide="clock"></i>Pon–Pt: 8:00–18:00</div>
-        </div>
-      </div>
-    </div>
     <div class="footer-bottom">
-      <span>© 2026 EV Fornalik. Wszelkie prawa zastrzeżone.</span>
+      <span>© 2026 AUTOPERFEKT Marian Fornalik. Wszelkie prawa zastrzeżone.</span>
       <div class="certifications">
         <span class="cert">Bosch CS</span>
         <span class="cert">IMI EV LV2</span>
@@ -1030,7 +991,7 @@ const symptoms = [
   { icon:'triangle-alert', text:'Kontrolka HV / wysokiego napięcia', sev:'crit', sevLabel:'PILNE — nie jedź dalej',
     title:'Świeci się kontrolka układu HV',
     desc:'Aktywna kontrolka HV (pomarańczowy trójkąt z wykrzyknikiem + HV) oznacza wykryty przez BMS problem w obwodzie wysokiego napięcia: izolacja HV poniżej progu, uszkodzenie wiązki HV, problem z bezpiecznikiem, awaria inwertera lub nieszczelność ogniwa. NIGDY nie ignoruj tej kontrolki.',
-    actions:['Nie kontynuuj jazdy — zaparkuj bezpiecznie','Wyłącz pojazd i wyjdź — nie otwieraj przestrzeni bagażowej','Zadzwoń: +48 123 456 789','Pojazd musi być przetransportowany — nie uruchamiaj'],
+    actions:['Nie kontynuuj jazdy — zaparkuj bezpiecznie','Wyłącz pojazd i wyjdź — nie otwieraj przestrzeni bagażowej','Zadzwoń: +48 697 662 671','Pojazd musi być przetransportowany — nie uruchamiaj'],
     cost:'Od 499 PLN diagnostyka HV' },
   { icon:'thermometer', text:'Przegrzewanie baterii', sev:'crit', sevLabel:'Wymaga reakcji',
     title:'Bateria się przegrzewa / ostrzeżenie termiczne',
